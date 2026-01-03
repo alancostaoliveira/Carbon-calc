@@ -1,39 +1,57 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-.kotlin
+# Dependências
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
-*.iml
-*.ipr
-
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+# IDEs
 .vscode/
-
-### Mac OS ###
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
+
+# Build
+dist/
+build/
+*.min.js
+*.min.css
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Maven (se usar)
+target/
+.mvn/
+
+# Python (se usar servidor local)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# IDE settings
+.editorconfig
+.prettierrc
+
+# Node modules (se migrar para Node)
+/node_modules
+/package-lock.json
+/yarn.lock
+
