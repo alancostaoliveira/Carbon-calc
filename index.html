@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Emissão de CO2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">🌍 EcoTrack</h1>
+                <p class="subtitle">Calcule sua emissão de CO2</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="calculator-section">
+                <div class="calculator-card">
+                    <h2>Calculadora de Emissão de CO2</h2>
+
+                    <form id="co2Form" class="form">
+                        <!-- Endereços -->
+                        <div class="form-group">
+                            <label for="startAddress" class="label">
+                                📍 Endereço Inicial
+                            </label>
+                            <input
+                                type="text"
+                                id="startAddress"
+                                class="input-field"
+                                placeholder="Ex: Rua A, 123, São Paulo"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endAddress" class="label">
+                                📍 Endereço Final
+                            </label>
+                            <input
+                                type="text"
+                                id="endAddress"
+                                class="input-field"
+                                placeholder="Ex: Avenida B, 456, Rio de Janeiro"
+                                required
+                            >
+                        </div>
+
+                        <!-- Distância -->
+                        <div class="form-group">
+                            <label for="distance" class="label">
+                                📏 Distância (km)
+                            </label>
+                            <input
+                                type="number"
+                                id="distance"
+                                class="input-field"
+                                placeholder="Informe a distância em km"
+                                min="0.1"
+                                step="0.1"
+                                required
+                            >
+                            <small class="helper-text">Você pode informar a distância manualmente ou usar o Google Maps</small>
+                        </div>
+
+                        <!-- Tipo de Veículo -->
+                        <div class="form-group">
+                            <label class="label">🚗 Tipo de Veículo</label>
+                            <div class="vehicle-options">
+                                <div class="radio-group">
+                                    <input
+                                        type="radio"
+                                        id="bicycle"
+                                        name="vehicle"
+                                        value="bicycle"
+                                        class="radio-input"
+                                    >
+                                    <label for="bicycle" class="radio-label">
+                                        <span class="vehicle-emoji">🚴</span>
+                                        <span class="vehicle-name">Bicicleta</span>
+                                        <span class="co2-info">0 g CO2/km</span>
+                                    </label>
+                                </div>
+
+                                <div class="radio-group">
+                                    <input
+                                        type="radio"
+                                        id="motorcycle"
+                                        name="vehicle"
+                                        value="motorcycle"
+                                        class="radio-input"
+                                    >
+                                    <label for="motorcycle" class="radio-label">
+                                        <span class="vehicle-emoji">🏍️</span>
+                                        <span class="vehicle-name">Moto</span>
+                                        <span class="co2-info">89 g CO2/km</span>
+                                    </label>
+                                </div>
+
+                                <div class="radio-group">
+                                    <input
+                                        type="radio"
+                                        id="car"
+                                        name="vehicle"
+                                        value="car"
+                                        class="radio-input"
+                                    >
+                                    <label for="car" class="radio-label">
+                                        <span class="vehicle-emoji">🚗</span>
+                                        <span class="vehicle-name">Carro</span>
+                                        <span class="co2-info">192 g CO2/km</span>
+                                    </label>
+                                </div>
+
+                                <div class="radio-group">
+                                    <input
+                                        type="radio"
+                                        id="bus"
+                                        name="vehicle"
+                                        value="bus"
+                                        class="radio-input"
+                                    >
+                                    <label for="bus" class="radio-label">
+                                        <span class="vehicle-emoji">🚌</span>
+                                        <span class="vehicle-name">Ônibus</span>
+                                        <span class="co2-info">89 g CO2/km</span>
+                                    </label>
+                                </div>
+
+                                <div class="radio-group">
+                                    <input
+                                        type="radio"
+                                        id="truck"
+                                        name="vehicle"
+                                        value="truck"
+                                        class="radio-input"
+                                    >
+                                    <label for="truck" class="radio-label">
+                                        <span class="vehicle-emoji">🚚</span>
+                                        <span class="vehicle-name">Caminhão</span>
+                                        <span class="co2-info">300 g CO2/km</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <small class="helper-text">Emissões por km (valores médios)</small>
+                        </div>
+
+                        <!-- Frequência -->
+                        <div class="form-group">
+                            <label for="frequency" class="label">
+                                📅 Frequência
+                            </label>
+                            <select id="frequency" class="input-field">
+                                <option value="1">Única vez</option>
+                                <option value="7">Semanal</option>
+                                <option value="30">Mensal</option>
+                                <option value="365">Anual</option>
+                            </select>
+                        </div>
+
+                        <!-- Botões -->
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-primary">
+                                Calcular Emissão
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                Limpar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Resultado -->
+            <section id="resultSection" class="result-section hidden">
+                <div class="result-card">
+                    <h2>Resultado da Emissão de CO2</h2>
+
+                    <div class="result-content">
+                        <div class="result-item">
+                            <span class="result-label">Distância Total:</span>
+                            <span class="result-value" id="resultDistance">-</span>
+                        </div>
+
+                        <div class="result-item">
+                            <span class="result-label">Tipo de Veículo:</span>
+                            <span class="result-value" id="resultVehicle">-</span>
+                        </div>
+
+                        <div class="result-item">
+                            <span class="result-label">Frequência:</span>
+                            <span class="result-value" id="resultFrequency">-</span>
+                        </div>
+
+                        <div class="result-divider"></div>
+
+                        <div class="result-main">
+                            <div class="co2-emission">
+                                <p class="co2-label">Emissão Total de CO2</p>
+                                <p class="co2-value" id="totalCO2">0</p>
+                                <p class="co2-unit">kg CO2</p>
+                            </div>
+
+                            <div class="co2-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Por viagem:</span>
+                                    <span class="detail-value" id="perTripCO2">0 kg</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Por km:</span>
+                                    <span class="detail-value" id="perKmCO2">0 g</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="equivalents">
+                            <h3>Equivalentes:</h3>
+                            <ul class="equivalents-list">
+                                <li>
+                                    🌳 Árvores necessárias para compensar:
+                                    <span id="treesNeeded">0</span> árvores
+                                </li>
+                                <li>
+                                    🚗 Equivalente a dirigir um carro:
+                                    <span id="carEquivalent">0</span> km
+                                </li>
+                                <li>
+                                    ✈️ Equivalente a voos:
+                                    <span id="flightEquivalent">0</span> km de avião
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-secondary" onclick="document.getElementById('resultSection').classList.add('hidden')">
+                        Fechar
+                    </button>
+                </div>
+            </section>
+
+            <!-- Informações -->
+            <section class="info-section">
+                <div class="info-card">
+                    <h2>ℹ️ Informações Importantes</h2>
+                    <div class="info-content">
+                        <h3>Sobre as Emissões:</h3>
+                        <ul>
+                            <li><strong>Bicicleta:</strong> 0 g CO2/km - Zero emissão! 🌱</li>
+                            <li><strong>Moto:</strong> 89 g CO2/km - Mais eficiente que carro</li>
+                            <li><strong>Carro:</strong> 192 g CO2/km - Emissão média</li>
+                            <li><strong>Ônibus:</strong> 89 g CO2/km - Compartilhado reduz impacto por pessoa</li>
+                            <li><strong>Caminhão:</strong> 300 g CO2/km - Maior emissão</li>
+                        </ul>
+
+                        <h3>Como Usar:</h3>
+                        <ol>
+                            <li>Informe o endereço inicial e final (ou a distância em km)</li>
+                            <li>Selecione o tipo de veículo</li>
+                            <li>Escolha a frequência da viagem</li>
+                            <li>Clique em "Calcular Emissão"</li>
+                        </ol>
+
+                        <h3>Dicas para Reduzir Emissões:</h3>
+                        <ul>
+                            <li>✅ Use bicicleta para distâncias curtas</li>
+                            <li>✅ Prefira ônibus ou transporte coletivo</li>
+                            <li>✅ Carona solidária com colegas</li>
+                            <li>✅ Teletrabalho quando possível</li>
+                            <li>✅ Viagens combinadas (agrupe destinos)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2026 EcoTrack - Calculadora de Emissão de CO2</p>
+            <p>Ajudando a criar um planeta mais sustentável 🌍</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

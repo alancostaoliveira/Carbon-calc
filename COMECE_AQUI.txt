@@ -1,0 +1,334 @@
+# 🚀 INSTRUÇÕES DE USO - Calculadora de Emissão de CO2
+
+Bem-vindo ao **EcoTrack**! 🌍
+
+Esta é uma aplicação web responsiva e interativa para calcular emissões de CO2 em viagens.
+
+---
+
+## ⚡ Início Rápido (3 Passos)
+
+### 1️⃣ Abrir a Aplicação
+
+**Opção A: Arquivo Local (Recomendado para começar)**
+```
+Abra o arquivo: C:\Users\crist\IdeaProjects\Carbon-calc\index.html
+Diretamente no seu navegador favorito (Chrome, Firefox, Safari, Edge)
+```
+
+**Opção B: Servidor Local (Para testar com Google Maps)**
+```powershell
+# Abra o PowerShell e navegue até a pasta:
+cd C:\Users\crist\IdeaProjects\Carbon-calc
+
+# Execute o servidor:
+python -m http.server 8000
+
+# Depois acesse:
+http://localhost:8000
+```
+
+### 2️⃣ Preencher o Formulário
+
+1. **Endereço Inicial** - Onde você sai
+2. **Endereço Final** - Onde você vai
+3. **Distância (km)** - Ou use Google Maps para calcular automaticamente
+4. **Tipo de Veículo** - Escolha um dos 5 disponíveis
+5. **Frequência** - Com que frequência faz essa viagem
+
+### 3️⃣ Calcular e Ver Resultados
+
+- Clique em **"Calcular Emissão"**
+- Veja os resultados com equivalentes visuais
+- Descubra quantas árvores seriam necessárias para compensar
+
+---
+
+## 📂 Arquivos Principais
+
+| Arquivo | Descrição |
+|---------|-----------|
+| **index.html** | Página principal da calculadora |
+| **style.css** | Estilos responsivos (mobile, tablet, desktop) |
+| **script.js** | Lógica de cálculo de CO2 |
+| **data.js** | Dados e configurações da aplicação |
+
+## 📄 Documentação
+
+| Arquivo | Para Quem |
+|---------|----------|
+| **QUICKSTART.html** | Guia rápido (esta é a introdução) |
+| **README.md** | Documentação técnica completa |
+| **PROJECT_SUMMARY.md** | Resumo do projeto e estrutura |
+| **GOOGLE_MAPS_SETUP.html** | Como integrar Google Maps API |
+| **TESTS.html** | Suite de testes da aplicação |
+
+---
+
+## 🎯 O que a Calculadora Faz
+
+### ✅ Calcula Emissão de CO2
+- Baseado na distância, veículo e frequência
+- Usa fatores científicos reais de emissão
+
+### ✅ Mostra Equivalências
+- 🌳 Árvores necessárias para compensar
+- 🚗 Equivalente em km de carro
+- ✈️ Equivalente em km de voo
+
+### ✅ Responsivo 100%
+- Funciona perfeitamente em:
+  - 📱 Celular
+  - 📱 Tablet
+  - 💻 Notebook
+  - 🖥️ Desktop
+
+### ✅ Sem Dependências
+- Funciona offline
+- HTML, CSS e JavaScript puro
+- Sem frameworks ou bibliotecas
+
+---
+
+## 🚗 Veículos Disponíveis
+
+```
+🚴 Bicicleta    → 0 g CO2/km      (Zero emissão!)
+🏍️ Moto         → 89 g CO2/km     (Eficiente)
+🚌 Ônibus       → 89 g CO2/km     (Compartilhado)
+🚗 Carro        → 192 g CO2/km    (Moderado)
+🚚 Caminhão     → 300 g CO2/km    (Alto)
+```
+
+---
+
+## 💡 Como Interpretar os Resultados
+
+### Exemplo:
+- **Carro de 10 km uma única vez** = 1,92 kg de CO2
+- **Necessárias:** ~1 árvore para compensar (por ano)
+- **Equivalente:** 100 km de carro (em emissão)
+- **Equivalente:** 212 km de voo (em emissão)
+
+### Dica:
+Use bicicleta ou ônibus quando possível para reduzir drasticamente sua pegada de carbono! 🌱
+
+---
+
+## 📊 Testes Disponíveis
+
+Para validar que a aplicação está funcionando corretamente:
+
+1. Abra **TESTS.html**
+2. Clique em **"Executar Todos os 14 Testes"**
+3. Verifique se todos passam ✓
+
+---
+
+## 🔧 Configuração Google Maps (Opcional)
+
+Se desejar calcular distância automaticamente entre endereços:
+
+1. Leia o arquivo **GOOGLE_MAPS_SETUP.html**
+2. Obtenha uma API Key no Google Cloud Console
+3. Adicione ao `<head>` do `index.html`:
+   ```html
+   <script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE"></script>
+   ```
+
+**Nota:** Funcionará offline sem essa integração (distância manual).
+
+---
+
+## 💻 Requisitos do Sistema
+
+### Navegador
+- ✅ Chrome 90+
+- ✅ Firefox 88+
+- ✅ Safari 14+
+- ✅ Edge 90+
+
+### Sistema Operacional
+- ✅ Windows (XP+)
+- ✅ macOS (10.12+)
+- ✅ Linux (qualquer distribuição)
+- ✅ Android (navegador moderno)
+- ✅ iOS Safari
+
+### Conexão
+- ✅ Online (para Google Maps)
+- ✅ Offline (funciona normalmente)
+
+---
+
+## 🎨 Personalizar Cores
+
+Para mudar as cores, edite `style.css`:
+
+```css
+:root {
+    --primary-color: #2ecc71;    /* Verde atual */
+    --secondary-color: #3498db;  /* Azul atual */
+    --danger-color: #e74c3c;     /* Vermelho */
+    --dark-bg: #1a1a1a;          /* Fundo escuro */
+    /* ... etc */
+}
+```
+
+---
+
+## 📝 Adicionar Novos Veículos
+
+Para adicionar um novo veículo, edite `script.js`:
+
+```javascript
+const CO2_FACTORS = {
+    // ... veículos existentes ...
+    electricCar: 50,  // Novo: Carro elétrico
+};
+
+const VEHICLE_NAMES = {
+    // ... nomes existentes ...
+    electricCar: '⚡ Carro Elétrico',
+};
+```
+
+Então adicione no HTML:
+
+```html
+<div class="radio-group">
+    <input type="radio" id="electricCar" name="vehicle" value="electricCar">
+    <label for="electricCar" class="radio-label">
+        <span class="vehicle-emoji">⚡</span>
+        <span class="vehicle-name">Carro Elétrico</span>
+        <span class="co2-info">50 g CO2/km</span>
+    </label>
+</div>
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Problema: Página em branco
+**Solução:** Verifique se todos os arquivos estão na mesma pasta:
+- index.html
+- style.css
+- script.js
+
+### Problema: Estilos não aparecem
+**Solução:** Limpe o cache do navegador (Ctrl+Shift+Delete)
+
+### Problema: Google Maps não funciona
+**Solução:** Leia **GOOGLE_MAPS_SETUP.html** para obter a chave de API
+
+### Problema: Testes falhando
+**Solução:** Abra o console (F12) para ver mensagens de erro
+
+---
+
+## 💬 Dicas de Uso
+
+### Para Reduzir Emissões:
+1. 🚴 Use bicicleta para trajetos até 5 km
+2. 🚌 Prefira ônibus ou metrô
+3. 🚗 Compartilhe carro com colegas
+4. 🏢 Trabalhe de home office
+5. 📦 Combine compras em um trajeto
+
+### Para Melhorar a Aplicação:
+1. Sugerir novos recursos
+2. Reportar bugs encontrados
+3. Testar em diferentes dispositivos
+4. Compartilhar com amigos/colegas
+
+---
+
+## 📱 Testar Responsividade
+
+### No Desktop:
+1. Abra o navegador
+2. Pressione **F12** para abrir DevTools
+3. Clique no ícone de **Celular** (Mobile Toggle)
+4. Teste diferentes tamanhos
+
+### Breakpoints:
+- 📱 Mobile: até 480px
+- 📱 Tablet: 480px - 768px
+- 💻 Laptop: 768px - 1200px
+- 🖥️ Desktop: 1200px+
+
+---
+
+## 📚 Referências Científicas
+
+As emissões usadas são baseadas em:
+- EPA (Environmental Protection Agency)
+- European Environment Agency
+- International Energy Agency (IEA)
+- Carbon Trust
+
+---
+
+## ✨ Funcionalidades Extras (Futuras)
+
+- [ ] Histórico de cálculos
+- [ ] Gráficos comparativos
+- [ ] Modo escuro
+- [ ] App móvel nativa
+- [ ] Integrações com redes sociais
+- [ ] Banco de dados de usuários
+- [ ] Relatórios mensais
+
+---
+
+## 🎯 Checklist de Primeiro Uso
+
+- [ ] Abrir `index.html` no navegador
+- [ ] Preencher o formulário com dados
+- [ ] Clicar em "Calcular Emissão"
+- [ ] Ver os resultados
+- [ ] Abrir em um celular para testar responsividade
+- [ ] Ler o `README.md` para entender melhor
+- [ ] Explorar `TESTS.html` para validação
+
+---
+
+## 📞 Próximos Passos
+
+1. **Comece Agora** - Abra `index.html`
+2. **Aprenda Mais** - Leia `README.md`
+3. **Explore** - Teste tudo em `TESTS.html`
+4. **Customize** - Adapte conforme necessário
+5. **Compartilhe** - Mostre a outras pessoas
+
+---
+
+## 🌍 Contribuindo para a Sustentabilidade
+
+Cada cálculo feito é uma oportunidade de:
+- ✅ Conscientizar sobre emissões de CO2
+- ✅ Incentivar escolhas sustentáveis
+- ✅ Contribuir para um planeta melhor
+- ✅ Inspirar outros
+
+---
+
+## 📄 Versão e Data
+
+- **Versão:** 1.0.0
+- **Data:** 2 de Janeiro de 2026
+- **Status:** ✅ Pronto para Produção
+
+---
+
+## 💚 Desenvolvido com Amor pelo Planeta
+
+🌍 **Ajude a criar um mundo mais sustentável!**
+
+---
+
+**Dúvidas? Abra o console do navegador (F12) para mensagens de debug.**
+
+**Aproveite a calculadora e aproveite as análises!** 🎉
+

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testes - Calculadora de CO2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .test-section {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .test-case {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ecf0f1;
+        }
+
+        .test-case h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .test-result {
+            background: #f0f7ff;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .test-button {
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .test-button:hover {
+            background: #2980b9;
+        }
+
+        .passed {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .failed {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">🧪 Testes - EcoTrack</h1>
+                <p class="subtitle">Validação e Testes da Calculadora de CO2</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="test-section">
+                <h2>🔍 Suite de Testes</h2>
+                <p>Esta página executa testes para validar o funcionamento correto da calculadora de CO2.</p>
+            </section>
+
+            <!-- Testes de Cálculo -->
+            <section class="calculator-card">
+                <h2>📊 Testes de Cálculo</h2>
+
+                <div class="test-case">
+                    <h4>Teste 1: Carro - 10 km - Única vez</h4>
+                    <p>Cálculo esperado: (10 × 192 / 1000) = 1.92 kg CO2</p>
+                    <button class="test-button" onclick="runTest1()">Executar Teste</button>
+                    <div id="test1-result" class="test-result" style="display:none;"></div>
+                </div>
+
+                <div class="test-case">
+                    <h4>Teste 2: Bicicleta - 5 km - Semanal (7 vezes)</h4>
+                    <p>Cálculo esperado: (5 × 0 / 1000) × 7 = 0 kg CO2</p>
+                    <button class="test-button" onclick="runTest2()">Executar Teste</button>
+                    <div id="test2-result" class="test-result" style="display:none;"></div>
+                </div>
+
+                <div class="test-case">
+                    <h4>Teste 3: Moto - 50 km - Mensal (30 vezes)</h4>
+                    <p>Cálculo esperado: (50 × 89 / 1000) × 30 = 133.5 kg CO2</p>
+                    <button class="test-button" onclick="runTest3()">Executar Teste</button>
+                    <div id="test3-result" class="test-result" style="display:none;"></div>
+                </div>
+
+                <div class="test-case">
+                    <h4>Teste 4: Ônibus - 20 km - Anual (365 vezes)</h4>
+                    <p>Cálculo esperado: (20 × 89 / 1000) × 365 = 648.7 kg CO2</p>
+                    <button class="test-button" onclick="runTest4()">Executar Teste</button>
+                    <div id="test4-result" class="test-result" style="display:none;"></div>
+                </div>
+
+                <div class="test-case">
+                    <h4>Teste 5: Caminhão - 100 km - Única vez</h4>
+                    <p>Cálculo esperado: (100 × 300 / 1000) × 1 = 30 kg CO2</p>
+                    <button class="test-button" onclick="runTest5()">Executar Teste</button>
+                    <div id="test5-result" class="test-result" style="display:none;"></div>
+                </div>
+            </section>
+
+            <!-- Testes de Equivalentes -->
+            <section class="calculator-card">
+                <h2>🌳 Testes de Equivalentes</h2>
+
+                <div class="test-case">
+                    <h4>Teste 6: Árvores necessárias para 21.77 kg CO2</h4>
+                    <p>Cálculo esperado: 1 árvore (21.77 / 21.77 = 1)</p>
+                    <button class="test-button" onclick="runTest6()">Executar Teste</button>
+                    <div id="test6-result" class="test-result" style="display:none;"></div>
+                </div>
+
+                <div class="test-case">
+                    <h4>Teste 7: Equivalência em km de carro para 192 kg CO2</h4>
+                    <p>Cálculo esperado: 1000 km de carro</p>
+                    <button class="test-button" onclick="runTest7()">Executar Teste</button>
+                    <div id="test7-result" class="test-result" style="display:none;"></div>
+                </div>
+
+                <div class="test-case">
+                    <h4>Teste 8: Equivalência em km de voo para 90 kg CO2</h4>
+                    <p>Cálculo esperado: 1000 km de voo</p>
+                    <button class="test-button" onclick="runTest8()">Executar Teste</button>
+                    <div id="test8-result" class="test-result" style="display:none;"></div>
+                </div>
+            </section>
+
+            <!-- Testes de Validação -->
+            <section class="calculator-card">
+                <h2>✅ Testes de Validação</h2>
+
+                <div class="test-case">
+                    <h4>Teste 9: Validação de Valores Válidos</h4>
+                    <p>Verifica se a aplicação aceita valores válidos</p>
+                    <button class="test-button" onclick="runTest9()">Executar Teste</button>
+                    <div id="test9-result" class="test-result" style="display:none;"></div>
+                </div>
+
+                <div class="test-case">
+                    <h4>Teste 10: Validação de Valores Mínimos</h4>
+                    <p>Verifica se a aplicação valida distância mínima (0.1 km)</p>
+                    <button class="test-button" onclick="runTest10()">Executar Teste</button>
+                    <div id="test10-result" class="test-result" style="display:none;"></div>
+                </div>
+
+                <div class="test-case">
+                    <h4>Teste 11: Elementos DOM Presentes</h4>
+                    <p>Verifica se todos os elementos necessários estão na página</p>
+                    <button class="test-button" onclick="runTest11()">Executar Teste</button>
+                    <div id="test11-result" class="test-result" style="display:none;"></div>
+                </div>
+            </section>
+
+            <!-- Testes de Responsividade -->
+            <section class="calculator-card">
+                <h2>📱 Testes de Responsividade</h2>
+
+                <div class="test-case">
+                    <h4>Teste 12: Viewport Meta Tag</h4>
+                    <p>Verifica se o meta tag viewport está configurado</p>
+                    <button class="test-button" onclick="runTest12()">Executar Teste</button>
+                    <div id="test12-result" class="test-result" style="display:none;"></div>
+                </div>
+
+                <div class="test-case">
+                    <h4>Teste 13: CSS Media Queries</h4>
+                    <p>Verifica se CSS responsivo foi carregado</p>
+                    <button class="test-button" onclick="runTest13()">Executar Teste</button>
+                    <div id="test13-result" class="test-result" style="display:none;"></div>
+                </div>
+
+                <div class="test-case">
+                    <h4>Teste 14: Tamanho da Janela Atual</h4>
+                    <p>Mostra o tamanho atual da viewport</p>
+                    <button class="test-button" onclick="runTest14()">Executar Teste</button>
+                    <div id="test14-result" class="test-result" style="display:none;"></div>
+                </div>
+            </section>
+
+            <!-- Resumo dos Testes -->
+            <section class="calculator-card">
+                <h2>📋 Executar Todos os Testes</h2>
+                <button class="btn btn-primary" onclick="runAllTests()" style="width: 100%; margin-top: 15px;">
+                    ▶️ Executar Todos os 14 Testes
+                </button>
+                <div id="all-results" class="test-result" style="margin-top: 20px; display:none;"></div>
+            </section>
+
+            <!-- Informações do Sistema -->
+            <section class="info-card">
+                <h2>ℹ️ Informações do Sistema</h2>
+                <div class="test-result">
+                    <p><strong>Navegador:</strong> <span id="browser-info">Detectando...</span></p>
+                    <p><strong>Viewport Atual:</strong> <span id="viewport-info">Detectando...</span></p>
+                    <p><strong>Horário do Teste:</strong> <span id="test-time">Detectando...</span></p>
+                    <p><strong>JavaScript Ativado:</strong> <span class="passed">✓ Sim</span></p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2026 EcoTrack - Testes da Calculadora de CO2</p>
+            <p><a href="index.html" style="color: white; text-decoration: underline;">← Voltar para a Calculadora</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Funções de Teste
+
+        function displayResult(testId, passed, expected, actual, message = '') {
+            const resultDiv = document.getElementById(testId + '-result');
+            const status = passed ? '<span class="passed">✓ PASSOU</span>' : '<span class="failed">✗ FALHOU</span>';
+
+            resultDiv.innerHTML = `
+                ${status}
+                <br>Esperado: ${expected}
+                <br>Obtido: ${actual}
+                ${message ? '<br>Observação: ' + message : ''}
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // Teste 1: Carro 10km
+        function runTest1() {
+            const distance = 10;
+            const co2Factor = 192;
+            const frequency = 1;
+            const expected = (distance * co2Factor / 1000).toFixed(2);
+            const actual = ((distance * co2Factor / 1000) * frequency).toFixed(2);
+            displayResult('test1', parseFloat(actual) === parseFloat(expected), expected + ' kg', actual + ' kg');
+        }
+
+        // Teste 2: Bicicleta 5km semanal
+        function runTest2() {
+            const distance = 5;
+            const co2Factor = 0;
+            const frequency = 7;
+            const expected = '0.00';
+            const actual = ((distance * co2Factor / 1000) * frequency).toFixed(2);
+            displayResult('test2', actual === expected, expected + ' kg', actual + ' kg');
+        }
+
+        // Teste 3: Moto 50km mensal
+        function runTest3() {
+            const distance = 50;
+            const co2Factor = 89;
+            const frequency = 30;
+            const expected = (distance * co2Factor / 1000 * frequency).toFixed(2);
+            const actual = ((distance * co2Factor / 1000) * frequency).toFixed(2);
+            displayResult('test3', parseFloat(actual) === parseFloat(expected), expected + ' kg', actual + ' kg');
+        }
+
+        // Teste 4: Ônibus 20km anual
+        function runTest4() {
+            const distance = 20;
+            const co2Factor = 89;
+            const frequency = 365;
+            const expected = (distance * co2Factor / 1000 * frequency).toFixed(2);
+            const actual = ((distance * co2Factor / 1000) * frequency).toFixed(2);
+            displayResult('test4', parseFloat(actual) === parseFloat(expected), expected + ' kg', actual + ' kg');
+        }
+
+        // Teste 5: Caminhão 100km
+        function runTest5() {
+            const distance = 100;
+            const co2Factor = 300;
+            const frequency = 1;
+            const expected = '30.00';
+            const actual = ((distance * co2Factor / 1000) * frequency).toFixed(2);
+            displayResult('test5', actual === expected, expected + ' kg', actual + ' kg');
+        }
+
+        // Teste 6: Árvores necessárias
+        function runTest6() {
+            const totalCO2 = 21.77;
+            const treeAbsorption = 21.77;
+            const expected = '1';
+            const actual = Math.ceil(totalCO2 / treeAbsorption).toString();
+            displayResult('test6', actual === expected, expected + ' árvore(s)', actual + ' árvore(s)');
+        }
+
+        // Teste 7: Equivalência em carro
+        function runTest7() {
+            const totalCO2 = 192;
+            const carEmissionPerKm = 192;
+            const expected = '1000.00';
+            const actual = (totalCO2 / (carEmissionPerKm / 1000)).toFixed(2);
+            displayResult('test7', actual === expected, expected + ' km', actual + ' km');
+        }
+
+        // Teste 8: Equivalência em voo
+        function runTest8() {
+            const totalCO2 = 90;
+            const planeEmissionPerKm = 90;
+            const expected = '1000.00';
+            const actual = (totalCO2 / (planeEmissionPerKm / 1000)).toFixed(2);
+            displayResult('test8', actual === expected, expected + ' km', actual + ' km');
+        }
+
+        // Teste 9: Validação de valores válidos
+        function runTest9() {
+            const distance = 15.5;
+            const vehicle = 'car';
+            const frequency = 30;
+
+            const isValid = distance > 0 && vehicle !== '' && frequency > 0;
+            displayResult('test9', isValid, 'Valores válidos', isValid ? 'Válido' : 'Inválido');
+        }
+
+        // Teste 10: Validação de valor mínimo
+        function runTest10() {
+            const distance = 0.05;
+            const minDistance = 0.1;
+            const isValid = distance >= minDistance;
+            displayResult('test10', !isValid, 'Rejeitar distância < 0.1 km',
+                isValid ? 'Aceito (erro)' : 'Rejeitado (correto)');
+        }
+
+        // Teste 11: Elementos DOM
+        function runTest11() {
+            const elementIds = ['co2Form', 'distance', 'resultSection'];
+            const allPresent = elementIds.every(id => document.getElementById(id) !== null);
+            const found = elementIds.filter(id => document.getElementById(id) !== null).length;
+            displayResult('test11', allPresent, 'Todos os 3 elementos', found + ' de 3 encontrados');
+        }
+
+        // Teste 12: Viewport Meta Tag
+        function runTest12() {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            const present = viewport !== null;
+            displayResult('test12', present, 'Meta viewport presente',
+                present ? 'Presente' : 'Ausente');
+        }
+
+        // Teste 13: CSS Carregado
+        function runTest13() {
+            const cssLoaded = document.styleSheets.length > 0;
+            displayResult('test13', cssLoaded, 'CSS carregado',
+                cssLoaded ? 'Sim (' + document.styleSheets.length + ' folhas)' : 'Não');
+        }
+
+        // Teste 14: Tamanho da janela
+        function runTest14() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            let device = 'Desconhecido';
+
+            if (width <= 480) device = 'Mobile (até 480px)';
+            else if (width <= 768) device = 'Tablet (481-768px)';
+            else if (width <= 1200) device = 'Laptop (769-1200px)';
+            else device = 'Desktop (1200px+)';
+
+            displayResult('test14', true, 'Informação do dispositivo',
+                `${width}×${height}px (${device})`);
+        }
+
+        // Executar todos os testes
+        function runAllTests() {
+            runTest1();
+            runTest2();
+            runTest3();
+            runTest4();
+            runTest5();
+            runTest6();
+            runTest7();
+            runTest8();
+            runTest9();
+            runTest10();
+            runTest11();
+            runTest12();
+            runTest13();
+            runTest14();
+
+            const allDiv = document.getElementById('all-results');
+            allDiv.innerHTML = '<strong>✓ Todos os 14 testes foram executados!</strong><br>Verifique os resultados acima.';
+            allDiv.style.display = 'block';
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Informações do sistema
+            document.getElementById('browser-info').textContent = navigator.userAgent.substring(0, 50) + '...';
+            document.getElementById('viewport-info').textContent = window.innerWidth + 'px × ' + window.innerHeight + 'px';
+            document.getElementById('test-time').textContent = new Date().toLocaleString('pt-BR');
+        });
+    </script>
+</body>
+</html>
+

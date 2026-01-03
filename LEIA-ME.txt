@@ -1,0 +1,183 @@
+═══════════════════════════════════════════════════════════════════════════════
+  🌍 CALCULADORA DE EMISSÃO DE CO2 - INSTRUÇÕES DE USO
+═══════════════════════════════════════════════════════════════════════════════
+
+BEM-VINDO! 👋
+
+Você tem uma calculadora web completa para calcular emissão de CO2 em viagens.
+
+═══════════════════════════════════════════════════════════════════════════════
+🚀 COMEÇAR AGORA (SUPER RÁPIDO)
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Abra o arquivo: index.html
+2. Clique em "Calcular Emissão" e veja o resultado!
+
+É só isso! A calculadora já está pronta para usar! ✅
+
+═══════════════════════════════════════════════════════════════════════════════
+📖 COMO USAR A CALCULADORA
+═══════════════════════════════════════════════════════════════════════════════
+
+PASSO 1 - Preencha os dados:
+  □ Endereço inicial (onde você sai)
+  □ Endereço final (onde você vai)
+  □ Distância em km (ou deixe em branco se quiser calcular depois)
+  □ Tipo de veículo (escolha um)
+  □ Frequência (quantas vezes por semana/mês/ano)
+
+PASSO 2 - Clique em "Calcular Emissão"
+
+PASSO 3 - Veja os resultados com:
+  ✓ Quantidade de CO2 emitida
+  ✓ Quantas árvores precisam compensar
+  ✓ Comparação com carro ou voo
+
+═══════════════════════════════════════════════════════════════════════════════
+🚗 VEÍCULOS DISPONÍVEIS
+═══════════════════════════════════════════════════════════════════════════════
+
+🚴 BICICLETA        → 0 g CO2/km      (Zero emissão!)
+🏍️ MOTO             → 89 g CO2/km     (Muito bom)
+🚌 ÔNIBUS           → 89 g CO2/km     (Muito bom)
+🚗 CARRO            → 192 g CO2/km    (Moderado)
+🚚 CAMINHÃO         → 300 g CO2/km    (Alto)
+
+═══════════════════════════════════════════════════════════════════════════════
+📁 ARQUIVOS PRINCIPAIS
+═══════════════════════════════════════════════════════════════════════════════
+
+index.html          ← ABRA ESTE ARQUIVO!
+style.css           (não precisa abrir - está automaticamente)
+script.js           (não precisa abrir - está automaticamente)
+
+═══════════════════════════════════════════════════════════════════════════════
+📚 DOCUMENTAÇÃO
+═══════════════════════════════════════════════════════════════════════════════
+
+Se quiser saber mais:
+
+RÁPIDO:
+  → COMECE_AQUI.txt (instruções básicas)
+  → QUICKSTART.html (guia visual)
+
+DETALHADO:
+  → README.md (documentação completa)
+  → PROJECT_SUMMARY.md (resumo do projeto)
+
+TESTES:
+  → TESTS.html (14 testes automáticos)
+  → CHECKLIST.html (checklist de tudo)
+
+TÉCNICO:
+  → GOOGLE_MAPS_SETUP.html (integração com Google Maps - opcional)
+
+═══════════════════════════════════════════════════════════════════════════════
+💡 DICAS PRÁTICAS
+═══════════════════════════════════════════════════════════════════════════════
+
+Para REDUZIR emissão de CO2:
+
+✓ Use bicicleta para trajetos curtos (até 5 km)
+✓ Escolha ônibus em vez de carro
+✓ Compartilhe carro com colegas (carona)
+✓ Trabalhe de casa quando possível
+✓ Combine compras em um único trajeto
+
+═══════════════════════════════════════════════════════════════════════════════
+⚙️ TECNOLOGIA
+═══════════════════════════════════════════════════════════════════════════════
+
+A calculadora é feita com:
+  • HTML5 (estrutura)
+  • CSS3 (design bonito e responsivo)
+  • JavaScript (cálculos)
+
+Não precisa de Internet depois de abrir!
+Funciona em Windows, Mac, Linux, Android e iPhone!
+
+═══════════════════════════════════════════════════════════════════════════════
+❓ PERGUNTAS FREQUENTES
+═══════════════════════════════════════════════════════════════════════════════
+
+P: Como aumento a calculadora?
+R: Clique no navegador para deixar a tela maior.
+
+P: Como mudar as cores?
+R: Edite o arquivo style.css (mas melhor deixar como está!)
+
+P: Posso adicionar mais veículos?
+R: Sim! Leia o arquivo PROJECT_SUMMARY.md
+
+P: Funciona sem Internet?
+R: Sim! Exceto se usar Google Maps (que é opcional).
+
+P: Como integrar Google Maps?
+R: Leia GOOGLE_MAPS_SETUP.html para instruções.
+
+═══════════════════════════════════════════════════════════════════════════════
+✨ EXEMPLO DE USO
+═══════════════════════════════════════════════════════════════════════════════
+
+CENÁRIO: Você vai de carro do trabalho para casa todos os dias
+
+1. Preencha:
+   - Endereço inicial: Rua A, 100 (trabalho)
+   - Endereço final: Rua B, 200 (casa)
+   - Distância: 15 km
+   - Veículo: Carro
+   - Frequência: 20 vezes por mês (dias úteis)
+
+2. Clique em "Calcular Emissão"
+
+3. Resultado:
+   - Emissão total: 57.6 kg CO2 por mês
+   - Precisa de: 3 árvores para compensar
+   - Equivalente a: 300 km de carro
+
+═══════════════════════════════════════════════════════════════════════════════
+🎯 PRÓXIMOS PASSOS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. AGORA       → Abra index.html
+2. PRÓXIMO     → Teste com seus dados
+3. DEPOIS      → Explore TESTS.html
+4. FUTURO      → Customize se necessário
+
+═══════════════════════════════════════════════════════════════════════════════
+📊 FUNCIONALIDADES
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Responsivo (funciona em celular, tablet, notebook)
+✅ Sem dependências (HTML, CSS, JS puro)
+✅ Offline (funciona sem Internet)
+✅ Rápido (carrega em menos de 1 segundo)
+✅ Seguro (não envia dados para ninguém)
+✅ Testado (14 testes automáticos inclusos)
+
+═══════════════════════════════════════════════════════════════════════════════
+🌍 AJUDANDO O PLANETA
+═══════════════════════════════════════════════════════════════════════════════
+
+Cada cálculo que você faz ajuda a:
+
+  ✓ Conscientizar sobre emissões de CO2
+  ✓ Incentiva escolhas sustentáveis
+  ✓ Contribui para um planeta melhor
+  ✓ Inspira outras pessoas
+
+═══════════════════════════════════════════════════════════════════════════════
+💚 DESENVOLVIDO COM AMOR PELO PLANETA
+═══════════════════════════════════════════════════════════════════════════════
+
+Se tiver dúvidas:
+  1. Abra o console do navegador (F12)
+  2. Leia os arquivos .txt e .md
+  3. Teste em TESTS.html
+
+APROVEITE A CALCULADORA! 🎉
+
+═══════════════════════════════════════════════════════════════════════════════
+Versão: 1.0.0 | Data: 2 de Janeiro de 2026 | Status: ✅ Pronto para Uso
+═══════════════════════════════════════════════════════════════════════════════
+

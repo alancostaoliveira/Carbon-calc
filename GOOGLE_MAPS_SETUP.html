@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instruções de Integração - Google Maps API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2ecc71;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2ecc71;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #34495e;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .note {
+            background-color: #fffacd;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .success {
+            background-color: #d5f4e6;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background-color: #fadbd8;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .steps {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #bdc3c7;
+        }
+
+        .step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .back-link {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .back-link a {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗺️ Integração com Google Maps API</h1>
+
+        <p>Este documento descreve como adicionar a funcionalidade de cálculo automático de distância usando a Google Maps Distance Matrix API na calculadora de CO2.</p>
+
+        <h2>📋 Pré-requisitos</h2>
+        <ul>
+            <li>Conta do Google com Google Cloud Console acesso</li>
+            <li>Cartão de crédito (para ativar a API, mas há limite de uso gratuito)</li>
+            <li>Conhecimento básico de HTML e JavaScript</li>
+        </ul>
+
+        <h2>🔑 Passo 1: Obter a API Key</h2>
+
+        <div class="steps">
+            <div class="step">
+                <span class="step-number">1</span>
+                Acesse o <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                Crie um novo projeto:
+                <ul>
+                    <li>Clique em "Selecionar um projeto" no topo</li>
+                    <li>Clique em "Novo projeto"</li>
+                    <li>Nomeie como "CO2 Calculator"</li>
+                    <li>Clique em "Criar"</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                Ative a Distance Matrix API:
+                <ul>
+                    <li>No menu de busca, procure por "Distance Matrix API"</li>
+                    <li>Selecione e clique em "Ativar"</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                Crie uma chave de API:
+                <ul>
+                    <li>Vá para "Credenciais" no menu lateral</li>
+                    <li>Clique em "Criar Credenciais" → "Chave de API"</li>
+                    <li>Copie a chave gerada</li>
+                    <li>(Opcional) Configure restrições de chave para segurança</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>💡 Dica:</strong> Restrinja sua API key aos domínios HTTP referentes para aumentar a segurança e evitar uso não autorizado.
+        </div>
+
+        <h2>🔐 Passo 2: Configurar Restrições (Recomendado)</h2>
+
+        <p>Para proteger sua chave de API:</p>
+
+        <ol>
+            <li>Vá para "Credenciais" no Cloud Console</li>
+            <li>Selecione sua API key</li>
+            <li>Em "Restrições de aplicações":</li>
+            <ul>
+                <li>Selecione "Websites HTTP (JavaScript)"</li>
+                <li>Adicione seus domínios (ex: localhost, seu-site.com)</li>
+            </ul>
+            <li>Em "Restrições de API":</li>
+            <ul>
+                <li>Selecione "Distance Matrix API"</li>
+            </ul>
+            <li>Clique em "Salvar"</li>
+        </ol>
+
+        <div class="warning">
+            <strong>⚠️ Aviso de Segurança:</strong> Nunca compartilhe sua API key publicamente. Se expostar acidentalmente, desative-a imediatamente no Cloud Console.
+        </div>
+
+        <h2>💻 Passo 3: Integrar no HTML</h2>
+
+        <p>Adicione o script do Google Maps no <code>&lt;head&gt;</code> do arquivo <code>index.html</code>:</p>
+
+        <pre>&lt;script src="https://maps.googleapis.com/maps/api/js?key=SUA_API_KEY_AQUI"&gt;&lt;/script&gt;</pre>
+
+        <p>Substitua <code>SUA_API_KEY_AQUI</code> pela sua chave real.</p>
+
+        <h3>Exemplo Completo:</h3>
+
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Calculadora de Emissão de CO2&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+
+    &lt;!-- Google Maps API --&gt;
+    &lt;script src="https://maps.googleapis.com/maps/api/js?key=SUA_API_KEY_AQUI"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Conteúdo do HTML --&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+        <h2>⚙️ Passo 4: Como a Função Funciona</h2>
+
+        <p>Quando você preenche os campos de endereço, a função <code>calculateDistance()</code> no <code>script.js</code> é acionada:</p>
+
+        <pre>function calculateDistance() {
+    const startAddress = startAddressInput.value.trim();
+    const endAddress = endAddressInput.value.trim();
+
+    if (startAddress && endAddress && window.google && window.google.maps) {
+        const service = new google.maps.DistanceMatrixService();
+
+        service.getDistanceMatrix(
+            {
+                origins: [startAddress],
+                destinations: [endAddress],
+                travelMode: 'DRIVING',
+                unitSystem: google.maps.UnitSystem.METRIC,
+                language: 'pt-BR'
+            },
+            function(response, status) {
+                if (status === 'OK') {
+                    const results = response.rows[0].elements[0];
+
+                    if (results.status === 'OK') {
+                        // Converte metros para km
+                        const distanceKm = results.distance.value / 1000;
+                        distanceInput.value = distanceKm.toFixed(2);
+                    }
+                }
+            }
+        );
+    }
+}</pre>
+
+        <h2>📊 Limitações de Uso Gratuito</h2>
+
+        <table>
+            <tr>
+                <th>Limite</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Requisições por mês</td>
+                <td>25.000 (gratuitas)</td>
+            </tr>
+            <tr>
+                <td>Requisições por segundo</td>
+                <td>100 QPS</td>
+            </tr>
+            <tr>
+                <td>Elementos por requisição</td>
+                <td>25 origens × 25 destinos = 625 máximo</td>
+            </tr>
+        </table>
+
+        <p>Após exceder 25.000 requisições, você será cobrado. <a href="https://cloud.google.com/maps-platform/pricing/" target="_blank">Veja mais sobre preços</a>.</p>
+
+        <h2>🧪 Testar Localmente</h2>
+
+        <p>Para testar com localhost, você precisa ativar um servidor web simples:</p>
+
+        <h3>Com Python 3:</h3>
+        <pre>cd C:\Users\crist\IdeaProjects\Carbon-calc
+python -m http.server 8000</pre>
+
+        <p>Depois acesse: <code>http://localhost:8000</code></p>
+
+        <h3>Com Python 2:</h3>
+        <pre>cd C:\Users\crist\IdeaProjects\Carbon-calc
+python -m SimpleHTTPServer 8000</pre>
+
+        <h3>Com Node.js:</h3>
+        <pre>npm install -g http-server
+cd C:\Users\crist\IdeaProjects\Carbon-calc
+http-server</pre>
+
+        <div class="success">
+            <strong>✅ Sucesso!</strong> Se os endereços forem preenchidos automaticamente no campo de distância, a integração funcionou corretamente!
+        </div>
+
+        <h2>🔧 Modos de Viagem Suportados</h2>
+
+        <p>Na função <code>calculateDistance()</code>, você pode usar diferentes modos de viagem:</p>
+
+        <ul>
+            <li><code>DRIVING</code> - Rota de carro (padrão)</li>
+            <li><code>WALKING</code> - Rota a pé</li>
+            <li><code>BICYCLING</code> - Rota de bicicleta</li>
+            <li><code>TRANSIT</code> - Transporte público</li>
+        </ul>
+
+        <p>Para usar outro modo, modifique a linha em <code>script.js</code>:</p>
+
+        <pre>travelMode: 'BICYCLING',  // Mudar de DRIVING para outro modo</pre>
+
+        <h2>❓ FAQ</h2>
+
+        <h3>P: Quanto custa usar a Google Maps API?</h3>
+        <p>R: Os primeiros 25.000 requisições por mês são gratuitas. Depois, custa $0,005 por requisição.</p>
+
+        <h3>P: Qual é o melhor modo de viagem para a calculadora de CO2?</h3>
+        <p>R: Use <code>DRIVING</code> como padrão, pois a maioria dos usuários usa carro. Você pode oferecer opções para outros modos.</p>
+
+        <h3>P: E se o endereço não for encontrado?</h3>
+        <p>R: A API retornará um status diferente de <code>OK</code>. Você pode adicionar tratamento de erro para notificar o usuário.</p>
+
+        <h3>P: Posso usar a API sem expor minha chave?</h3>
+        <p>R: Sim! Crie um backend (servidor) que faça as requisições. Dessa forma, sua chave não fica exposta no frontend.</p>
+
+        <h2>📚 Recursos Adicionais</h2>
+
+        <ul>
+            <li><a href="https://developers.google.com/maps/documentation/distance-matrix" target="_blank">Documentação Distance Matrix API</a></li>
+            <li><a href="https://cloud.google.com/maps-platform/" target="_blank">Google Maps Platform</a></li>
+            <li><a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a></li>
+        </ul>
+
+        <div class="back-link">
+            <a href="index.html">← Voltar para a Calculadora</a>
+        </div>
+    </div>
+</body>
+</html>
+

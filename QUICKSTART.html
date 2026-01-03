@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Rápido - Calculadora de CO2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 700px;
+            animation: slideIn 0.6s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #2ecc71;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .quick-start {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .btn-secondary {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .btn-secondary:hover {
+            background: #d4d4d8;
+            transform: scale(1.05);
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #2c3e50;
+        }
+
+        .success-box {
+            background: #f0fdf4;
+            border-left: 4px solid #2ecc71;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #2c3e50;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #2c3e50;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            color: #7f8c8d;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 EcoTrack</h1>
+        <p class="subtitle">Calculadora de Emissão de CO2 - Guia Rápido</p>
+
+        <!-- Início Rápido -->
+        <div class="section">
+            <h2>🚀 Começar Agora</h2>
+            <div class="quick-start">
+                <a href="index.html" class="card">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">Calculadora</div>
+                </a>
+                <a href="README.md" class="card">
+                    <div class="card-icon">📖</div>
+                    <div class="card-title">Documentação</div>
+                </a>
+                <a href="GOOGLE_MAPS_SETUP.html" class="card">
+                    <div class="card-icon">🗺️</div>
+                    <div class="card-title">Google Maps</div>
+                </a>
+                <a href="PROJECT_SUMMARY.md" class="card">
+                    <div class="card-icon">📋</div>
+                    <div class="card-title">Resumo</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- O que é -->
+        <div class="section">
+            <h2>❓ O que é?</h2>
+            <p>Uma calculadora web <strong>responsiva e interativa</strong> que ajuda você a:</p>
+            <ul>
+                <li>Calcular emissão de CO2 em viagens</li>
+                <li>Comparar diferentes meios de transporte</li>
+                <li>Entender o impacto ambiental das suas escolhas</li>
+                <li>Encontrar alternativas mais sustentáveis</li>
+            </ul>
+        </div>
+
+        <!-- Como Usar -->
+        <div class="section">
+            <h2>🎯 Como Usar</h2>
+            <ol style="list-style: decimal; padding-left: 20px;">
+                <li style="padding-left: 0; margin-bottom: 10px;">
+                    <strong>Abra a calculadora</strong>
+                    <div style="padding-left: 20px; margin-top: 5px;">
+                        Clique em "Calculadora" acima ou abra <code>index.html</code>
+                    </div>
+                </li>
+                <li style="padding-left: 0; margin-bottom: 10px;">
+                    <strong>Preencha os dados</strong>
+                    <div style="padding-left: 20px; margin-top: 5px;">
+                        Endereço inicial, final e tipo de veículo
+                    </div>
+                </li>
+                <li style="padding-left: 0; margin-bottom: 10px;">
+                    <strong>Clique em "Calcular"</strong>
+                    <div style="padding-left: 20px; margin-top: 5px;">
+                        Veja o resultado com equivalentes visuais
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Veículos -->
+        <div class="section">
+            <h2>🚗 Veículos Disponíveis</h2>
+            <div class="feature-list">
+                <div>
+                    <strong>🚴 Bicicleta</strong><br>
+                    <small>0 g CO2/km - Zero emissão!</small>
+                </div>
+                <div>
+                    <strong>🏍️ Moto</strong><br>
+                    <small>89 g CO2/km - Eficiente</small>
+                </div>
+                <div>
+                    <strong>🚌 Ônibus</strong><br>
+                    <small>89 g CO2/km - Compartilhado</small>
+                </div>
+                <div>
+                    <strong>🚗 Carro</strong><br>
+                    <small>192 g CO2/km - Moderado</small>
+                </div>
+                <div>
+                    <strong>🚚 Caminhão</strong><br>
+                    <small>300 g CO2/km - Alto</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tecnologias -->
+        <div class="section">
+            <h2>💻 Tecnologias</h2>
+            <ul>
+                <li><strong>HTML5</strong> - Semântico e acessível</li>
+                <li><strong>CSS3</strong> - Responsivo e moderno</li>
+                <li><strong>JavaScript</strong> - Sem dependências externas</li>
+                <li><strong>Google Maps API</strong> - Opcional (para cálculo de distância)</li>
+            </ul>
+            <div class="success-box">
+                ✅ Funciona offline! Você pode abrir e usar sem internet.
+            </div>
+        </div>
+
+        <!-- Responsividade -->
+        <div class="section">
+            <h2>📱 Responsividade</h2>
+            <ul>
+                <li>✅ Desktop - Layout completo</li>
+                <li>✅ Tablet - 2 colunas otimizadas</li>
+                <li>✅ Celular - 1 coluna, touch-friendly</li>
+                <li>✅ Qualquer tamanho de tela</li>
+            </ul>
+            <div class="info-box">
+                💡 Teste em diferentes dispositivos para ver a responsividade em ação!
+            </div>
+        </div>
+
+        <!-- Integração Google Maps -->
+        <div class="section">
+            <h2>🗺️ Google Maps (Opcional)</h2>
+            <p>Para calcular distância automaticamente entre endereços:</p>
+            <ol style="list-style: decimal; padding-left: 20px;">
+                <li style="padding-left: 0; margin-bottom: 8px;">
+                    Obtenha uma <strong>API Key</strong> no Google Cloud Console
+                </li>
+                <li style="padding-left: 0; margin-bottom: 8px;">
+                    Adicione no <code>&lt;head&gt;</code> do <code>index.html</code>
+                </li>
+                <li style="padding-left: 0;">
+                    Pronto! A distância será calculada automaticamente
+                </li>
+            </ol>
+            <div class="warning-box">
+                ⚠️ Leia o guia <strong>GOOGLE_MAPS_SETUP.html</strong> para detalhes completos
+            </div>
+        </div>
+
+        <!-- Dicas -->
+        <div class="section">
+            <h2>💡 Dicas de Sustentabilidade</h2>
+            <ul>
+                <li>🚴 Use bicicleta para distâncias até 5 km</li>
+                <li>🚌 Prefira ônibus ou transporte coletivo</li>
+                <li>🚗 Faça caronas solidárias</li>
+                <li>🏢 Teletrabalhe quando possível</li>
+                <li>📦 Combine compras em um único trajeto</li>
+            </ul>
+        </div>
+
+        <!-- Arquivos -->
+        <div class="section">
+            <h2>📁 Estrutura de Arquivos</h2>
+            <ul>
+                <li><code>index.html</code> - Página principal da calculadora</li>
+                <li><code>style.css</code> - Estilos responsivos</li>
+                <li><code>script.js</code> - Lógica da calculadora</li>
+                <li><code>data.js</code> - Dados e configurações</li>
+                <li><code>README.md</code> - Documentação completa</li>
+                <li><code>GOOGLE_MAPS_SETUP.html</code> - Guia Google Maps</li>
+            </ul>
+        </div>
+
+        <!-- Ações -->
+        <div class="btn-group">
+            <a href="index.html" class="btn btn-primary">
+                📊 Acessar Calculadora
+            </a>
+            <a href="README.md" class="btn btn-secondary">
+                📖 Ver Documentação
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>🌍 Desenvolvido com 💚 para um planeta mais sustentável</p>
+            <p>Versão 1.0.0 | 2 de Janeiro de 2026</p>
+        </div>
+    </div>
+</body>
+</html>
+
